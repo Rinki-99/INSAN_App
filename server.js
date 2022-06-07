@@ -19,6 +19,7 @@ const connection = mysql.createPool({
     database: 'heroku_23ed422d7cab436'
 })
 
+connection.query('select 1 + 1', (err, rows) => { /* */ });
 
 // View engine
 app.set('view engine', 'ejs')

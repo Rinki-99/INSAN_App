@@ -2,12 +2,14 @@ const mysql = require('mysql')
 
 
 // Connection Details 
-const dbConn = mysql.createConnection({
+const dbConn = mysql.createPool({
     host: 'eu-cdbr-west-02.cleardb.net',
     user: 'b39de166698829',
     password: 'bfd17a8b',
     database: 'heroku_23ed422d7cab436'
 });
+
+dbConn.query('select 1 + 1', (err, rows) => { /* */ });
 
 dbConn.connect(function(error){
     
