@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
-var dbConn = require('../INSAN_gitHub/config/db.config');
+var dbConn = require('config/db.config');
 
 let port = process.env.PORT || 8080
 
