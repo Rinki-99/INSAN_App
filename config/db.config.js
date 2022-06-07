@@ -9,7 +9,10 @@ const dbConn = mysql.createPool({
     database: 'heroku_23ed422d7cab436'
 });
 
-dbConn.query('select 1 + 1', (err, rows) => { /* */ });
+dbConn.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
+    if (error) throw error;
+    console.log('The solution is: ', results[0].solution);
+  });
 
 dbConn.connect(function(error){
     

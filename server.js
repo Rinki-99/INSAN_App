@@ -11,32 +11,13 @@ app.use(bodyParser.urlencoded({extended: false}))
 // parse request data content type application/json
 app.use(bodyParser.json());
 
-// Connection Details 
-const connection = mysql.createPool({
-    host: 'eu-cdbr-west-02.cleardb.net',
-    user: 'b39de166698829',
-    password: 'bfd17a8b',
-    database: 'heroku_23ed422d7cab436'
-})
-
-connection.query('select 1 + 1', (err, rows) => { /* */ });
-
 // View engine
 app.set('view engine', 'ejs')
 
 
 // Render Home page
 app.get('/', function(req, res) {
-
-    connection.query('SELECT * FROM Section', (error, rows) => {
-        if(error) throw error;
-    
-        if(!error) {
-            console.log(rows)
-            res.render('pages/index', { rows } )
-        }
-    })
-
+            res.render('pages/index')
 })
 
 // Import routes
