@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
+const mysql = require('mysql')
 const bodyParser = require('body-parser')
-var dbConn = require('config/db.config');
 
 let port = process.env.PORT || 8080
 
@@ -11,6 +11,14 @@ app.use(bodyParser.urlencoded({extended: false}))
 // parse request data content type application/json
 app.use(bodyParser.json());
 
+// Connection Details 
+const connection = mysql.createPool({
+    host: 'eu-cdbr-west-02.cleardb.net',
+    user: 'b39de166698829',
+    password: 'bfd17a8b',
+    database: 'heroku_23ed422d7cab436'
+})
+
 
 // View engine
 app.set('view engine', 'ejs')
@@ -19,7 +27,7 @@ app.set('view engine', 'ejs')
 // Render Home page
 app.get('/', function(req, res) {
 
-    dbConn.query('SELECT * FROM Section', (error, rows) => {
+    connection.query('SELECT * FROM Section', (error, rows) => {
         if(error) throw error;
     
         if(!error) {
