@@ -1,6 +1,7 @@
 var dbConn = require('../../config/db.config');
 
 var Groupe = function(groupe){
+    this.Nom_groupe        =   groupe.Nom_groupe;
     this.Ville             =   groupe.Ville;
     this.Responsable       =   groupe.Responsable;
     this.Section           =   groupe.Section;
@@ -58,6 +59,18 @@ Groupe.deleteGroupe = (id, result)=>{
             result(null, res);
         }
    });
+}
+
+// get groupe by ID from DB
+Groupe.getMembresByGroupeID = (id, result)=>{
+    dbConn.query('SELECT * FROM Membre WHERE Groupe=?', id, (err, res)=>{
+        if(err){
+            console.log('Error while fetching membres by groupe id', err);
+            result(null, err);
+        }else{
+            result(null, res);
+        }
+    })
 }
 
 

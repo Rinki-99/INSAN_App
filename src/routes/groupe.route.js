@@ -16,4 +16,7 @@ router.get('/:id',groupeController.getGroupeByID);
 //delete groupe by id
 router.delete('/:id',groupeController.deleteGroupe);
 
+// get membres by groupe ID
+router.get('/membres/:id', groupeController.getMembresByGroupeID);
+
 module.exports = router;

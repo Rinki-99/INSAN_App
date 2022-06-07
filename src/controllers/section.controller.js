@@ -75,3 +75,13 @@ exports.getTauxPresenceActiviteMois = (req, res)=>{
         res.send(section);
     })
 }
+
+// /get groupes by section ID
+exports.getGroupesBySectionID = (req, res)=>{
+    SectionModel.getGroupesBySectionID(req.params.id, (err, section)=>{
+        if(err)
+        res.send(err);
+        console.log('groupes section', section);
+        res.send(section);
+    })
+}

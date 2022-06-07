@@ -49,3 +49,13 @@ exports.deleteGroupe = (req, res)=>{
         res.json({success:true, message: 'Groupe deleted successully!'});
     })
 }
+
+// get membres by groupe ID
+exports.getMembresByGroupeID = (req, res)=>{
+    GroupeModel.getMembresByGroupeID(req.params.id, (err, groupe)=>{
+        if(err)
+        res.send(err);
+        console.log('membres by groupe ID', groupe);
+        res.send(groupe);
+    })
+}
