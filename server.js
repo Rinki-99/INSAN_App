@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json());
 
 // Connection Details 
-const connection = mysql.createPool({
+const connection = mysql.createConnection({
     host: 'eu-cdbr-west-02.cleardb.net',
     user: 'b39de166698829',
     password: 'bfd17a8b',
