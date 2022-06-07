@@ -1,6 +1,5 @@
 const express = require('express')
 const app = express()
-const mysql = require('mysql')
 const bodyParser = require('body-parser')
 
 let port = process.env.PORT || 8080
@@ -17,7 +16,7 @@ app.set('view engine', 'ejs')
 
 // Render Home page
 app.get('/', function(req, res) {
-            res.render('pages/index')
+        res.render('pages/index')
 })
 
 // Import routes
