@@ -23,7 +23,7 @@ router.delete('/:id', sectionController.deleteSection);
 router.get('/taux/:mois/:activite', sectionController.getTauxPresenceActiviteMois);
 
 //get groupes section
-router.get('groupes/:id', sectionController.getGroupesBySectionID);
+router.get('/groupes/:id', sectionController.getGroupesBySectionID);
 
 
 module.exports = router;
