@@ -94,7 +94,7 @@ Section.getTauxPresenceActiviteMois = (mois, activite, result)=>{
 
 // get groupes by Section ID from DB
 Section.getGroupesBySectionID = (id, result)=>{
-    dbConn.query('SELECT * FROM Groupes WHERE Section=?', id, (err, res)=>{
+    dbConn.query('SELECT * FROM Groupe WHERE Section=?', id, (err, res)=>{
         if(err){
             console.log('Error while fetching groupes by section id', err);
             result(null, err);
