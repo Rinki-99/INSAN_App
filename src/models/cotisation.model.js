@@ -52,7 +52,7 @@ Cotisation.getCotisationByID = (id, result)=>{
 
 //Taux de cotisation par groupe, semestre et année
 Cotisation.getTauxCotisation = (trimestre, annee, result)=>{
-    dbConn.query('SELECT ROUND(sum(Montant_cotise)/(SELECT sum(montant_cotisation) FROM Membre) *100) as montant_tot_cotise, sum(Montant_cotise) as Montant_cotise, (SELECT sum(montant_cotisation) FROM Membre) as Montant_a_cotise, m.Groupe FROM cotisation c INNER JOIN membre m ON c.Membre = m.ID_Membre WHERE c.Trimestre = ? AND c.Annee = ? group by Groupe', [trimestre, annee], (err, res)=>{
+    dbConn.query('SELECT ROUND(sum(Montant_cotise)/sum(montant_cotisation)*100) as montant_tot_cotise, sum(Montant_cotise) as Montant_cotise, sum(montant_cotisation) as Montant_a_cotise, m.Groupe FROM cotisation c INNER JOIN membre m ON c.Membre = m.ID_Membre WHERE c.Trimestre = ? AND c.Annee = ? group by Groupe', [trimestre, annee], (err, res)=>{
                      if(err){
                          console.log('Error while searching taux cotisation', err);
                      }else{
