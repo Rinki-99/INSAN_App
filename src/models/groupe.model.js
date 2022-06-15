@@ -63,7 +63,7 @@ Groupe.deleteGroupe = (id, result)=>{
 
 // get groupe by ID from DB
 Groupe.getMembresByGroupeID = (id, result)=>{
-    dbConn.query('SELECT * FROM Membre WHERE Groupe=?', id, (err, res)=>{
+    dbConn.query('SELECT m.ID_Membre, m.Nom, m.Prenom, m.montant_cotisation, g.Nom_groupe AS Groupe FROM Membre m INNER JOIN Groupe g ON m.Groupe = g.ID_Groupe WHERE g.ID_Groupe = ?', id, (err, res)=>{
         if(err){
             console.log('Error while fetching membres by groupe id', err);
             result(null, err);
