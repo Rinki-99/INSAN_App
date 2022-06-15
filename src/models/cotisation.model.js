@@ -53,7 +53,7 @@ Cotisation.getCotisationByID = (id, result)=>{
 //Taux de cotisation par groupe, semestre et année
 Cotisation.getTauxCotisation = (trimestre, annee, result)=>{
     
-    const qry = `SELECT ROUND(sum(IF(tab.Trimestre = 1 AND tab.Annee = 2022,tab.Montant_cotise,0))/sum(tab.montant_cotisation)*100) as montant_tot_cotise, sum(IF(tab.Trimestre = 1 AND tab.Annee = 2022,tab.Montant_cotise,0)) as Montant_cotise, sum(tab.montant_cotisation) as Montant_a_cotise, tab.Groupe 
+    const qry = `SELECT ROUND(sum(IF(tab.Trimestre = ? AND tab.Annee = ?,tab.Montant_cotise,0))/sum(tab.montant_cotisation)*100) as montant_tot_cotise, sum(IF(tab.Trimestre = ? AND tab.Annee = ?,tab.Montant_cotise,0)) as Montant_cotise, sum(tab.montant_cotisation) as Montant_a_cotise, tab.Groupe 
                        FROM (SELECT  *
                        FROM Cotisation
                        LEFT JOIN Membre
