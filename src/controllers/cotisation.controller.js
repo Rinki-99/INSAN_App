@@ -59,7 +59,7 @@ exports.updateCotisation = (req, res)=>{
         res.send(400).send({success: false, message: 'Please fill all fields'});
     }
     else{
-        CotisationModel.updateCotisation(req.params.id, cotisationReqData, (err, cotisation)=>{
+        CotisationModel.updateCotisation(req.params.annee, req.params.semestre, req.params.membre, cotisationReqData, (err, cotisation)=>{
             if(err)
             res.send(err);
             res.json({status: true, message: 'Cotisation updates', data: cotisation.insertId})
