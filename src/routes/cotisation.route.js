@@ -17,6 +17,6 @@ router.get('/:id',cotisationController.getCotisationByID);
 router.get('/taux/:trimestre/:annee', cotisationController.getTauxCotisation);
 
 //update cotisation
-router.put('/:id', cotisationController.updateCotisation);
+router.put('/:annee/:semestre/:membre', cotisationController.updateCotisation);
 
 module.exports = router;
