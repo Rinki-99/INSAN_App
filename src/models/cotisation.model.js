@@ -75,9 +75,9 @@ Cotisation.getTauxCotisation = (trimestre, annee, result)=>{
 }
 
 // update Cotisation
-Cotisation.updateCotisation = (id, cotisationReqData, result)=>{
-    dbConn.query("UPDATE Cotisation SET Montant_cotise=?, Trimestre=?, Annee=?, Membre=? WHERE ID_Cotisation = ?",
-                 [cotisationReqData.Montant_cotise, cotisationReqData.Trimestre, cotisationReqData.Annee, cotisationReqData.Membre, id],
+Cotisation.updateCotisation = (annee, semestre, membre, cotisationReqData, result)=>{
+    dbConn.query("UPDATE Cotisation SET Montant_cotise=?, Trimestre=?, Annee=?, Membre=? WHERE Trimestre=? AND Annee=? AND Membre=?",
+                 [cotisationReqData.Montant_cotise, cotisationReqData.Trimestre, cotisationReqData.Annee, cotisationReqData.Membre, semestre, annee, membre],
                  (err, res)=>{
                      if(err){
                          console.log('Error while updating the Cotisation');
