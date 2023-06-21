@@ -4,6 +4,9 @@ const bodyParser = require('body-parser')
 
 let port = process.env.PORT || 8080
 
+var cors = require('cors');
+app.use(cors());
+
 // parse request data content type application/x-ww-form-rulencoded
 app.use(bodyParser.urlencoded({extended: false}))
 
@@ -14,7 +17,7 @@ app.use(bodyParser.json());
 app.set('view engine', 'ejs')
 
 
-// Render Home page
+// Render Home page 
 app.get('/', function(req, res) {
         res.render('pages/index')
 })

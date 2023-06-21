@@ -26,8 +26,24 @@ Cotisation.getAllCotisations = (result) => {
 Cotisation.createCotisation = (cotisationReqData, result) =>{
     dbConn.query('INSERT INTO Cotisation SET ? ' , cotisationReqData, (err, res) => {
         if(err){
-            console.log('Error while inserting data');
-            result(null,  err);
+            if(err.errno == 1062){
+                dbConn.query("UPDATE Cotisation SET Montant_cotise=?, Trimestre=?, Annee=?, Membre=? WHERE Trimestre=? AND Annee=? AND Membre=?",
+                [cotisationReqData.Montant_cotise, cotisationReqData.Trimestre, cotisationReqData.Annee, cotisationReqData.Membre, cotisationReqData.Trimestre, cotisationReqData.Annee, cotisationReqData.Membre],
+                (err, res)=>{
+                    if(err){
+                        console.log('Error while updating the Cotisation');
+                        result(null, err);
+                    }
+                    else{
+                        console.log('Cotisation updated');
+                        result(null, res);
+                    }
+                });
+            }
+            else {
+                console.log('Error while inserting data');
+                result(null,  err);
+            }
         }
         else{
             console.log('Cotisation created successfully');
